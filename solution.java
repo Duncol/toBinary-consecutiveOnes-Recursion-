@@ -1,14 +1,15 @@
 import java.io.*;
 import java.util.*;
 
-public class Solution {
+public class MainClass {
     static String binStr = "";
-    int i = 0;
-    int maxCount = 0;
+    static int i = 0;
+    static int n = 0;
+    static int maxCount = 0;
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        int theNumber = scan.nextInt();
-        System.out.println(theNumber = consecutiveOnes(i));
+        int sourceNumber = scan.nextInt();
+        System.out.println(consecutiveOnes(i, n, toBinary(sourceNumber)));
     }
     public static String toBinary(int n){
         if (n==1) {return binStr += "1";}
@@ -23,24 +24,26 @@ public class Solution {
             }
         }
     }
-    public static int consecutiveOnes(int i){
-        if (i == binStr.length()-1){
-            if(int n = Integer.parseInt(Character.toString(binStr.charAt(i))) == 1){
-                return Math.max(n, maxCount);
+    public static int consecutiveOnes(int i, int n, String s){
+        if (i == s.length()-1){
+            if(s.charAt(i) == '1'){
+                return 1;
             }
             else{
-                return Math.max(n = 0, maxCount-1);
+                return 0;
             }
         }
         else{
-            if (binStr.charAt(i) == '1'){
-                consecutiveOnes(i+1);
-                n += 1;
-                return Math.max(n, maxCount);
+            if (s.charAt(i) == '1'){
+                n = consecutiveOnes(i+1, n, s);         //<<< 1st         <<<2nd
+                return n + 1;
             }
             else{
-                return Math.max(n, maxCount);
+                n = consecutiveOnes(i+1, n, s);         //<<< 3rd
+                maxCount = Math.max(n, maxCount);
+                n = 0;
+                return 0;
             }
-        }                  
+        }
     }
 }
