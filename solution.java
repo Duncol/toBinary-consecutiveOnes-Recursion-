@@ -37,7 +37,7 @@ public class MainClass {
                 return 0;
             }
         }
-        else if (iFD){                                  //First call of method - always
+        else if (iFD){                                  //First call of method goes here - always
             iFD = false;
             n = consecutiveOnes(i, n, s, iFD);
             return maxCount = Math.max(n, maxCount);
